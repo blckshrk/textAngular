@@ -4,13 +4,13 @@
     define('textAngular', ["rangy","rangy/lib/rangy-selectionsaverestore"], function (a0,b1) {
       return (root['textAngular.name'] = factory(a0,b1));
     });
-  } else if (typeof exports === 'object') {
+  } else if (typeof module === 'object' && module.exports) {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory(require("rangy"),require("rangy/lib/rangy-selectionsaverestore"));
   } else {
-    root['textAngular'] = factory(rangy);
+    root['textAngular'] = factory(root["rangy"]);
   }
 }(this, function (rangy) {
 
@@ -3622,28 +3622,28 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
                                             taSelection.setSelectionToElementStart(_new[0]);
                                         }
                                     } else {
-                                        // shift + Enter
-                                        var tagName = selection.tagName.toLowerCase();
-                                        //console.log('Shift+Enter', selection.tagName, attrs.taDefaultWrap, selection.innerHTML.trim());
-                                        // For an LI: We see: LI p ....<br><br>
-                                        // For a P: We see: P p ....<br><br>
-                                        // on Safari, the browser ignores the Shift+Enter and acts just as an Enter Key
-                                        // For an LI: We see: LI p <br>
-                                        // For a P: We see: P p <br>
-                                        if((tagName === attrs.taDefaultWrap ||
-                                            tagName === 'li' ||
-                                            tagName === 'pre' ||
-                                            tagName === 'div') &&
-                                            !/.+<br><br>/.test(selection.innerHTML.trim())) {
-                                            var ps = selection.previousSibling;
-                                            //console.log('wrong....', ps);
-                                            // we need to remove this selection and fix the previousSibling up...
-                                            if (ps) {
-                                                ps.innerHTML = ps.innerHTML + '<br><br>';
-                                                angular.element(selection).remove();
-                                                taSelection.setSelectionToElementEnd(ps);
-                                            }
-                                        }
+                                        // // shift + Enter
+                                        // var tagName = selection.tagName.toLowerCase();
+                                        // //console.log('Shift+Enter', selection.tagName, attrs.taDefaultWrap, selection.innerHTML.trim());
+                                        // // For an LI: We see: LI p ....<br><br>
+                                        // // For a P: We see: P p ....<br><br>
+                                        // // on Safari, the browser ignores the Shift+Enter and acts just as an Enter Key
+                                        // // For an LI: We see: LI p <br>
+                                        // // For a P: We see: P p <br>
+                                        // if((tagName === attrs.taDefaultWrap ||
+                                        //     tagName === 'li' ||
+                                        //     tagName === 'pre' ||
+                                        //     tagName === 'div') &&
+                                        //     !/.+<br><br>/.test(selection.innerHTML.trim())) {
+                                        //     var ps = selection.previousSibling;
+                                        //     //console.log('wrong....', ps);
+                                        //     // we need to remove this selection and fix the previousSibling up...
+                                        //     if (ps) {
+                                        //         ps.innerHTML = ps.innerHTML + '<br><br>';
+                                        //         angular.element(selection).remove();
+                                        //         taSelection.setSelectionToElementEnd(ps);
+                                        //     }
+                                        // }
                                     }
                                 }
                                 var val = _compileHtml();
